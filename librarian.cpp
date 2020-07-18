@@ -35,27 +35,27 @@ void decission(int i, int qType, int sNum, int a[][3])
 	a[i][0] = qType;
 	a[i][1] = sNum;
 	if(qType == 1)
-		{
-			cin>>a[i][2];
-			pgno[sNum].push_back(a[i][2]);
+	{
+		cin>>a[i][2];
+		pgno[sNum].push_back(a[i][2]);
 			
-			if(!nobook[sNum])
-			{
-				nobook[sNum] = 1;
-			}
-			else
-			{
-				nobook[sNum]++;
-			}
-		}
-		else if(qType == 2)
+		if(!nobook[sNum])
 		{
-			cin>>a[i][2];
-		}	
-		else if(qType == 3)
-		{
-			a[i][2] = 0;
+			nobook[sNum] = 1;
 		}
+		else
+		{
+			nobook[sNum]++;
+		}
+	}
+	else if(qType == 2)
+	{
+		cin>>a[i][2];
+	}	
+	else if(qType == 3)
+	{
+		a[i][2] = 0;
+	}
 }
 
 
