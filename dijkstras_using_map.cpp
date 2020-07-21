@@ -5,12 +5,8 @@ using namespace std;
 
 map<int, map<int,int> > read(int , map<int, map<int, int> > );
 map<int, int> dijkstras(int, int, map<int, map<int, int> > , map<int, int>);
-
-
-int minm(int a, int b)
-{
-	return ((a>b)?b:a);
-}
+void display(map<int,int>, int);
+int minm(int, int);
 
 int main()
 {
@@ -29,19 +25,14 @@ int main()
 	dist = dijkstras(n, source, cost, dist);
 	//cout<<"\nEnter Destination: ";
 	//cin>>dest;
-	cout<<"\n";
-	
-	map<int, int> :: iterator itr;
-	cout<<"Source	 | Destination 	|  Distance\n";
-	for(itr = dist.begin(); itr != dist.end(); ++itr)
-	{
-		cout<<source <<" 	 |	"<<itr->first << "    	| 	"<< itr->second<<"\n";	
-	}
-	
 	//cout<<"\nDistance from "<<source<<" to "<<dest<<" is: "<<dist[dest];
+	cout<<"\n";
+	display(dist, source);
+	
 	return 0;
 }
 
+//function to read cost matrix
 map<int, map<int,int> > read(int n, map<int, map<int, int> > cost)
 {
 	int value;
@@ -56,6 +47,24 @@ map<int, map<int,int> > read(int n, map<int, map<int, int> > cost)
 	return cost;
 }
 
+//function to display shortest distance
+void display(map<int,int> dist, int source)
+{
+	map<int, int> :: iterator itr;
+	cout<<"Source	 | Destination 	|  Distance\n";
+	for(itr = dist.begin(); itr != dist.end(); ++itr)
+	{
+		cout<<source <<" 	 |	"<<itr->first << "    	| 	"<< itr->second<<"\n";	
+	}	
+}
+
+//function to find minimum of two values
+int minm(int a, int b)
+{
+	return ((a>b)?b:a);
+}
+
+//dijkstras algorithm
 map <int, int> dijkstras(int n, int source, map<int, map<int, int> > cost, map<int, int> dist)
 {
 	int w, min;
