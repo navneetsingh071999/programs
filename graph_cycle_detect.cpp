@@ -5,35 +5,32 @@
 using namespace std;
 
 int n;
-
-map<int,map<int, int> > g;
  
-bool cyclic(int v, vector<bool> visited, int parent)
+bool cyclic(int v, vector<bool> visited, int parent, vector<int> g[])
 {
 	visited[v] = true;
-	
-	map<int, int> :: iterator j;
-	for(j = g[v].begin(); j != g[v].end(); ++j)
+
+	for(int j = 0; j != g[v].size(); j++)
 	{
-		if(!visited[j->second])
+		if(!visited[g[v][j]])
 		{
-			if(cyclic(j->second, visited, v))
+			if(cyclic(g[v][j], visited, v, g))
 				return true;	
 		}
 		
-		else if (j->second != parent)
+		else if (g[v][j] != parent)
 			return true;	
 	}	
 	return false;
 } 
  
-bool isCyclic()
+bool isCyclic(vector<int> g[])
 {
 	vector<bool> visited(n,false);
 	
 	for(int u = 0; u < n; u ++)
 		if(!visited[u])
-			if(cyclic(u, visited, -1))
+			if(cyclic(u, visited, -1, g))
 				return true;
 				
 	return false;
@@ -41,21 +38,24 @@ bool isCyclic()
 
 int main()
 {
-	int a, b;
+	int a, b, e;
 
 	
 	cout<<"Enter no of Nodes: ";
 	cin>>n;
 	
-	for(int i = 0; i < n; i++)
+	vector<int> g[n];
+	
+	cout<<"\nEnter no of Edges: ";
+	cin>>e;
+	
+	for(int i = 0; i < e; i++)
 	{
 		cout<<"\nEnter N1 and N2: ";
 		cin>>a>>b;
-		if(!g[a][b] && !g[b][a])
-		{
-			g[a][b] = b;
-			g[b][a] = a;
-		}
+		
+		g[a].push_back(b);
+		g[b].push_back(a);
 	}
 //	map<int,int> :: iterator j;
 //	for(int i = 0; i < n; i++)
@@ -67,7 +67,7 @@ int main()
 //		cout<<"\n";
 //	}
 	
-	if(isCyclic())
+	if(isCyclic(g))
 	{
 		cout<<"\nContains Cycle";
 		
