@@ -10,7 +10,7 @@ void addnode(vector<int> g[], int a, int b)
 {
 
 	g[a].push_back(b);
-	[b].push_back(a);
+	//g[b].push_back(a);
 
 }
 
