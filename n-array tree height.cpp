@@ -16,7 +16,7 @@ int fillheight(int a[], int node, int depth[])
 	
 	
 
-	depth[node] = fillheight(a, a[node], depth, child) + 1;
+	depth[node] = fillheight(a, a[node], depth) + 1;
 	
 	return depth[node];
 }
