@@ -27,7 +27,7 @@ int find_height(int a[], int n)
 	for(int i = 0; i < n; i++)
 	{
 		depth[i] = -1;
-		child[i] = 0;
+		//child[i] = 0;
 	}
 	
 	int ht = 0;
